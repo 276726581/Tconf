@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean id="jsonConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="features">
+                    <list>
+                        <value>WriteMapNullValue</value>
+                        <value>QuoteFieldNames</value>
+                        <value>WriteNullNumberAsZero</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView"/>
-        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="prefix" value="/WEB-INF/view/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <mvc:resources location="/WEB-INF/lib/css/" mapping="/lib/css/**"/>
+    <mvc:resources location="/WEB-INF/lib/js/" mapping="/lib/js/**"/>
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+    <mvc:resources location="/WEB-INF/view/template/" mapping="/view/template/**"/>
+
+    <mvc:view-controller path="/" view-name="index"/>
+
+    <context:component-scan base-package="com.timogroup.tconf.controller"/>
 
 </beans>

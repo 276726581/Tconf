@@ -17,8 +17,12 @@ app.factory("http", function ($http) {
         }
     }
 });
-app.controller("ctrl", function ($scope, $uibModal, http) {
+app.controller("ctrl", function ($scope, http) {
     $scope.init = function () {
+        $scope.groupItems = [{name: "配置管理", selected: true, index: 0}, {name: "用户管理", selected: false, index: 1}];
+        $scope.confHidden = false;
+        $scope.userHidden = true;
+
         http.request({
             method: "get",
             url: "/props/list"
@@ -28,10 +32,28 @@ app.controller("ctrl", function ($scope, $uibModal, http) {
             alert(response.msg);
         });
     };
+    $scope.groupItemChanged = function (item) {
+        $scope.groupItems.forEach(function (it) {
+            if (item == it) {
+                it.selected = true;
+            } else {
+                it.selected = false;
+            }
+        });
+        if (item.index == 0) {
+            $scope.confHidden = false;
+            $scope.userHidden = true;
+        } else if (item.index == 1) {
+            $scope.confHidden = true;
+            $scope.userHidden = false;
+        }
+    };
+});
+app.controller("confCtrl", function ($scope, $uibModal, http) {
     $scope.browse = function (item, size) {
-        var modalInstance = $uibModal.open({
+        $uibModal.open({
             templateUrl: "/view/template/browse.html",
-            controller: "browseCtrl",
+            controller: "browseConfCtrl",
             size: size,
             resolve: {
                 items: function () {
@@ -41,16 +63,11 @@ app.controller("ctrl", function ($scope, $uibModal, http) {
                 }
             }
         });
-        modalInstance.result.then(function (it) {
-
-        }, function () {
-
-        });
     };
     $scope.add = function (size) {
         var modalInstance = $uibModal.open({
             templateUrl: "/view/template/edit.html",
-            controller: "addCtrl",
+            controller: "addConfCtrl",
             size: size,
             resolve: {
                 items: function () {
@@ -67,7 +84,7 @@ app.controller("ctrl", function ($scope, $uibModal, http) {
     $scope.edit = function (item, size) {
         var modalInstance = $uibModal.open({
             templateUrl: "/view/template/edit.html",
-            controller: "editCtrl",
+            controller: "editConfCtrl",
             size: size,
             resolve: {
                 items: function () {
@@ -94,7 +111,44 @@ app.controller("ctrl", function ($scope, $uibModal, http) {
         });
     };
 });
-app.controller("browseCtrl", function ($scope, $uibModalInstance, items, http) {
+app.controller("userCtrl", function ($scope, $uibModal, http) {
+    $scope.list = [];
+    $scope.add = function (size) {
+        var modalInstance = $uibModal.open({
+            templateUrl: "/view/template/adduser.html",
+            controller: "addUserCtrl",
+            size: size,
+            resolve: {
+                items: function () {
+                    return {};
+                }
+            }
+        });
+        modalInstance.result.then(function (it) {
+            $scope.list.push(it);
+        }, function () {
+
+        });
+    };
+});
+app.controller("addUserCtrl", function ($scope, $uibModalInstance, items, http) {
+    $scope.save = function () {
+        $scope.title = "增加用户";
+        http.request({
+            method: "get",
+            url: "/props/" + items.id + "/map"
+        }, function (response) {
+            $scope.name = response.data.name;
+            $scope.props = response.data.props;
+        }, function (response) {
+            alert(response.msg);
+        });
+    };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss();
+    };
+});
+app.controller("browseConfCtrl", function ($scope, $uibModalInstance, items, http) {
     $scope.init = function () {
         $scope.title = "浏览";
         http.request({
@@ -111,7 +165,7 @@ app.controller("browseCtrl", function ($scope, $uibModalInstance, items, http) {
         $uibModalInstance.dismiss();
     };
 });
-app.controller("addCtrl", function ($scope, $uibModalInstance, items, http) {
+app.controller("addConfCtrl", function ($scope, $uibModalInstance, items, http) {
     $scope.init = function () {
         $scope.title = "增加";
     };
@@ -134,7 +188,7 @@ app.controller("addCtrl", function ($scope, $uibModalInstance, items, http) {
         $uibModalInstance.dismiss();
     };
 });
-app.controller("editCtrl", function ($scope, $uibModalInstance, items, http) {
+app.controller("editConfCtrl", function ($scope, $uibModalInstance, items, http) {
     $scope.init = function () {
         http.request({
             method: "get",

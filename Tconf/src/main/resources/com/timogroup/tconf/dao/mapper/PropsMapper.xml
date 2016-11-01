@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.timogroup.tconf.dao.mapper.PropsMapper">
-    <insert id="save">
-        insert into props (name,uuid,properties) values (#{name},#{uuid},#{properties})
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into props (id,name,uuid,properties) values (#{id},#{name},#{uuid},#{properties})
     </insert>
     <update id="update">
         update props set id=id

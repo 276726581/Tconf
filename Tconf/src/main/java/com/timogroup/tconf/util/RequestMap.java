@@ -61,6 +61,15 @@ public class RequestMap {
         return value;
     }
 
+    public String getAsString(String key, String defaultValue) {
+        String val = map.get(key);
+        if (null == val) {
+            val = defaultValue;
+        }
+
+        return val;
+    }
+
     public int getAsInt(String key, int defaultValue) {
         String val = map.get(key);
         int value = NumberUtils.toInt(val, defaultValue);

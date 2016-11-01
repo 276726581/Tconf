@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html ng-app="app">
 <head>
     <title>Tconf</title>
@@ -46,8 +47,11 @@
                     } else {
                         error(response);
                     }
-                }).error(function () {
-                    error({msg: "server error"});
+                }).error(function (response, status) {
+                    if (-1 != status) {
+                        error({msg: "server error"});
+                        console.log(response);
+                    }
                 });
             }
         }

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.timogroup.tconf.dao.mapper.UserMapper">
-    <insert id="save">
-        insert into user (username,password) values (#{userName},password(#{passWord}))
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into user (id,username,password) values (#{id},#{userName},password(#{passWord}))
     </insert>
     <update id="update">
         update user set id=id

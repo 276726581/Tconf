@@ -7,6 +7,7 @@ import com.timogroup.tconf.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by TimoRD on 2016/10/31.
@@ -53,5 +54,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Integer id) {
         userDao.deleteById(id);
+    }
+
+    @Override
+    public List<User> getUserList() {
+        List<User> list = userDao.findAll();
+        return list;
     }
 }

@@ -1,37 +1,18 @@
-var app = angular.module("app", ["ui.bootstrap"]);
-app.factory("http", function ($http) {
-    return {
-        request: function (request, success, error) {
-            $http(request).success(function (response) {
-                if (200 == response.status) {
-                    success(response);
-                } else {
-                    error(response);
-                }
-            }).error(function (response, status) {
-                if (-1 != status) {
-                    error({msg: "server error"});
-                    console.log(response);
-                }
-            });
-        }
-    }
-});
-app.controller("ctrl", function ($scope, http) {
+var app = angular.module("app", ["ui.bootstrap", "userModule", "propsModule"]);
+app.controller("ctrl", function ($scope, userService, propsService) {
+
     $scope.init = function () {
         $scope.groupItems = [{name: "配置管理", selected: true, index: 0}, {name: "用户管理", selected: false, index: 1}];
         $scope.confHidden = false;
         $scope.userHidden = true;
 
-        http.request({
-            method: "get",
-            url: "/props/list"
-        }, function (response) {
+        propsService.getList().then(function (response) {
             $scope.list = response.data;
-        }, function (response) {
+        }, function () {
             alert(response.msg);
         });
     };
+
     $scope.groupItemChanged = function (item) {
         $scope.groupItems.forEach(function (it) {
             if (item == it) {
@@ -52,7 +33,7 @@ app.controller("ctrl", function ($scope, http) {
 app.controller("confCtrl", function ($scope, $uibModal, http) {
     $scope.browse = function (item, size) {
         $uibModal.open({
-            templateUrl: "/view/template/browse.html",
+            templateUrl: "/template/browse.html",
             controller: "browseConfCtrl",
             size: size,
             resolve: {
@@ -66,7 +47,7 @@ app.controller("confCtrl", function ($scope, $uibModal, http) {
     };
     $scope.add = function (size) {
         var modalInstance = $uibModal.open({
-            templateUrl: "/view/template/edit.html",
+            templateUrl: "/template/edit.html",
             controller: "addConfCtrl",
             size: size,
             resolve: {
@@ -83,7 +64,7 @@ app.controller("confCtrl", function ($scope, $uibModal, http) {
     };
     $scope.edit = function (item, size) {
         var modalInstance = $uibModal.open({
-            templateUrl: "/view/template/edit.html",
+            templateUrl: "/template/edit.html",
             controller: "editConfCtrl",
             size: size,
             resolve: {
@@ -115,7 +96,7 @@ app.controller("userCtrl", function ($scope, $uibModal, http) {
     $scope.list = [];
     $scope.add = function (size) {
         var modalInstance = $uibModal.open({
-            templateUrl: "/view/template/adduser.html",
+            templateUrl: "/template/adduser.html",
             controller: "addUserCtrl",
             size: size,
             resolve: {

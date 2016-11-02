@@ -4,6 +4,8 @@ import com.timogroup.tconf.entity.User;
 import com.timogroup.tconf.exception.BusinessException;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by TimoRD on 2016/10/31.
  */
@@ -18,4 +20,6 @@ public interface UserService {
     void updateWord(Integer id, String passWord);
 
     void deleteUser(Integer id);
+
+    List<User> getUserList();
 }

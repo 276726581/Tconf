@@ -1,8 +1,8 @@
 package com.timogroup.tconf;
 
-import com.timogroup.tconf.entity.Props;
+import com.timogroup.tconf.entity.Config;
 import com.timogroup.tconf.exception.BusinessException;
-import com.timogroup.tconf.service.PropsService;
+import com.timogroup.tconf.service.ConfigService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,10 +16,10 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/app.xml")
-public class PropsServiceTest {
+public class ConfigServiceTest {
 
-    @Resource(name = "propsService")
-    private PropsService propsService;
+    @Resource(name = "configService")
+    private ConfigService configService;
 
     @Test
     public void saveProps() throws BusinessException {
@@ -27,12 +27,12 @@ public class PropsServiceTest {
         buffer.append("username=ad");
         buffer.append(System.lineSeparator());
         buffer.append("password=ad");
-        String properties = buffer.toString();
+        String content = buffer.toString();
 
-        Props props = new Props();
-        props.setName("test");
-        props.setProperties(properties);
-        propsService.saveProps(props);
+        Config config = new Config();
+        config.setName("test");
+        config.setContent(content);
+        configService.saveProps(config);
         System.out.println();
     }
 
@@ -40,25 +40,25 @@ public class PropsServiceTest {
     public void update() throws BusinessException {
         StringBuffer buffer = new StringBuffer();
         buffer.append("db.driver=com.mysql.jdbc.Driver");
-        String properties = buffer.toString();
+        String content = buffer.toString();
 
-        Props props = new Props();
-        props.setId(1);
-        props.setName("test");
-        props.setProperties(properties);
-        propsService.updateProps(props);
+        Config config = new Config();
+        config.setId(1);
+        config.setName("test");
+        config.setContent(content);
+        configService.updateProps(config);
         System.out.println();
     }
 
     @Test
     public void findAll() {
-        List<Props> list = propsService.findAll();
+        List<Config> list = configService.findAll();
         System.out.println();
     }
 
     @Test
     public void deleteUser() {
-        Props props = propsService.findPropsByUUID("be146af8-e86a-42d2-affa-67a753796cde");
+        Config config = configService.findPropsByUUID("be146af8-e86a-42d2-affa-67a753796cde");
         System.out.println();
     }
 }

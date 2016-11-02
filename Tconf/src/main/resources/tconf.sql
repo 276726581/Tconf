@@ -1,7 +1,7 @@
 CREATE DATABASE tconf DEFAULT CHARACTER SET utf8;
 
-DROP TABLE IF EXISTS `props`;
-CREATE TABLE `props` (
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE `config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `uuid` varchar(255) DEFAULT NULL,

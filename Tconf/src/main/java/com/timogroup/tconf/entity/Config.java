@@ -5,12 +5,12 @@ import java.io.Serializable;
 /**
  * Created by TimoRD on 2016/10/31.
  */
-public class Props implements Serializable {
+public class Config implements Serializable {
 
     private Integer id;
     private String name;
     private String uuid;
-    private String properties;
+    private String content;
 
     public Integer getId() {
         return id;
@@ -36,15 +36,15 @@ public class Props implements Serializable {
         this.uuid = uuid;
     }
 
-    public String getProperties() {
-        return properties;
+    public String getContent() {
+        return content;
     }
 
-    public void setProperties(String properties) {
-        this.properties = properties;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Props() {
+    public Config() {
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Props implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", uuid='" + uuid + '\'' +
-                ", properties='" + properties + '\'' +
+                ", content='" + content + '\'' +
                 '}';
     }
 }

@@ -23,7 +23,7 @@ public class UserController extends BaseController {
     @Resource
     private UserService userService;
 
-    @RequestMapping(value = "/list")
+    @RequestMapping(value = "", method = {RequestMethod.GET})
     @ResponseBody
     public ResponseData getUserList() {
         ResponseData data = new ResponseData();
@@ -44,7 +44,7 @@ public class UserController extends BaseController {
         return data;
     }
 
-    @RequestMapping(value = "/add", method = {RequestMethod.POST})
+    @RequestMapping(value = "", method = {RequestMethod.POST})
     @ResponseBody
     public ResponseData addUser(@RequestBody Map<String, String> map) {
         ResponseData data = new ResponseData();

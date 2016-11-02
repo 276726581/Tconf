@@ -1,12 +1,12 @@
-var app = angular.module("app", ["ui.bootstrap", "userModule", "propsModule"]);
-app.controller("ctrl", function ($scope, userService, propsService) {
+var app = angular.module("app", ["ui.bootstrap", "userModule", "configModule"]);
+app.controller("ctrl", function ($scope, userService, configService) {
 
     $scope.init = function () {
         $scope.groupItems = [{name: "配置管理", selected: true, index: 0}, {name: "用户管理", selected: false, index: 1}];
         $scope.confHidden = false;
         $scope.userHidden = true;
 
-        propsService.getList().then(function (response) {
+        configService.getList().then(function (response) {
             $scope.list = response.data;
         }, function () {
             alert(response.msg);

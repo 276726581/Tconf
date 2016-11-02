@@ -4,13 +4,20 @@
 <html ng-app="app">
 <head>
     <title>管理</title>
-    <link href="http://cdn.bootcss.com/normalize/5.0.0/normalize.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">
-    <script src="http://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
-    <script src="http://cdn.bootcss.com/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>
+    <%--<link href="http://cdn.bootcss.com/normalize/5.0.0/normalize.min.css" rel="stylesheet">--%>
+    <%--<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--%>
+    <%--<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">--%>
+    <%--<script src="http://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>--%>
+    <%--<script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--%>
+    <%--<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>--%>
+    <%--<script src="http://cdn.bootcss.com/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>--%>
+    <link href="../lib/css/normalize.css" rel="stylesheet">
+    <link href="../lib/css/bootstrap.css" rel="stylesheet">
+    <link href="../lib/css/bootstrap-theme.css" rel="stylesheet">
+    <script src="../lib/js/jquery.js"></script>
+    <script src="../lib/js/bootstrap.js"></script>
+    <script src="../lib/js/angular/angular.js"></script>
+    <script src="../lib/js/angular/angular-ui-bootstrap-tpls.js"></script>
     <style type="text/css">
         tr td {
             padding: 5px;
@@ -82,6 +89,6 @@
 </body>
 <script type="text/javascript" src="../js/factory/http.js"></script>
 <script type="text/javascript" src="../js/service/user.js"></script>
-<script type="text/javascript" src="../js/service/props.js"></script>
+<script type="text/javascript" src="../js/service/config.js"></script>
 <script type="text/javascript" src="../js/controller/admin.js"></script>
 </html>

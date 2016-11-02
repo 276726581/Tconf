@@ -1,15 +1,22 @@
 (function () {
-    angular.module("httpModule", []).factory("http", http);
+    angular.module("restModule", []).factory("rest", rest);
 
-    function http($http, $q) {
+    function rest($http, $q) {
 
         return {
+            setUnAuthHandler: setUnAuthHandler,
             request: request,
             get: get,
             post: post,
             put: put,
             del: del
         };
+
+        var handler;
+
+        function setUnAuthHandler(fn) {
+            handler = fn;
+        }
 
         function request(req) {
             var options = {};
@@ -24,6 +31,10 @@
             }).success(function (response) {
                 if (200 == response.status) {
                     defer.resolve(response);
+                } else if (401 == response.status) {
+                    if (undefined != handler) {
+                        handler();
+                    }
                 } else {
                     defer.reject(error);
                 }

@@ -1,14 +1,14 @@
 (function () {
-    angular.module("userModule", ["httpModule"]).service("userService", userService);
+    angular.module("userModule", ["restModule"]).service("userService", userService);
 
-    function userService(http) {
+    function userService(rest) {
 
         return {
             login: login
         };
 
         function login(username, password) {
-            return http.post(function (options) {
+            return rest.post(function (options) {
                 options.url = "/admin/login";
                 options.data = {
                     username: username,

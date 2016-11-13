@@ -48,7 +48,7 @@ app.controller("propsCtrl", function ($scope, $uibModal, propsService) {
     };
     $scope.add = function (size) {
         var modalInstance = $uibModal.open({
-            templateUrl: "/template/edit.html",
+            templateUrl: "/template/edit_props.html",
             controller: "addPropsCtrl",
             size: size,
             resolve: {
@@ -63,7 +63,7 @@ app.controller("propsCtrl", function ($scope, $uibModal, propsService) {
     };
     $scope.browse = function (item, size) {
         $uibModal.open({
-            templateUrl: "/template/browse.html",
+            templateUrl: "/template/props_browse.html",
             controller: "browsePropsCtrl",
             size: size,
             resolve: {
@@ -77,7 +77,7 @@ app.controller("propsCtrl", function ($scope, $uibModal, propsService) {
     };
     $scope.edit = function (item, size) {
         var modalInstance = $uibModal.open({
-            templateUrl: "/template/edit.html",
+            templateUrl: "/template/edit_props.html",
             controller: "editPropsCtrl",
             size: size,
             resolve: {
@@ -111,7 +111,7 @@ app.controller("userCtrl", function ($scope, $uibModal, userService) {
     };
     $scope.add = function (size) {
         var modalInstance = $uibModal.open({
-            templateUrl: "/template/adduser.html",
+            templateUrl: "/template/edit_user.html",
             controller: "addUserCtrl",
             size: size,
             resolve: {

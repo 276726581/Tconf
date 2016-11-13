@@ -36,7 +36,7 @@
                         handler();
                     }
                 } else {
-                    defer.reject(error);
+                    defer.reject(response);
                 }
             }).error(function (response, status) {
                 console.log(response);

@@ -1,4 +1,4 @@
-angular.module("app", ["userModule"]).controller("ctrl", indexController);
+angular.module("app", ["userServiceModule"]).controller("ctrl", indexController);
 
 function indexController($scope, $window, rest, userService) {
     rest.setUnAuthHandler(function () {

@@ -1,8 +1,8 @@
 package com.timogroup.tconf.controller;
 
 import com.timogroup.tconf.dto.ResponseData;
-import com.timogroup.tconf.entity.Config;
-import com.timogroup.tconf.service.ConfigService;
+import com.timogroup.tconf.entity.Props;
+import com.timogroup.tconf.service.PropsService;
 import com.timogroup.tconf.util.BeanMapUtil;
 import com.timogroup.tconf.util.RequestMap;
 import org.apache.log4j.Logger;
@@ -17,20 +17,20 @@ import java.util.*;
  * Created by TimoRD on 2016/10/31.
  */
 @Controller
-@RequestMapping("/config")
-public class ConfigController extends BaseController {
+@RequestMapping("/props")
+public class PropsController extends BaseController {
 
-    private static Logger logger = Logger.getLogger(ConfigController.class);
+    private static Logger logger = Logger.getLogger(PropsController.class);
 
     @Resource
-    private ConfigService configService;
+    private PropsService propsService;
 
     @RequestMapping(value = "", method = {RequestMethod.GET})
     @ResponseBody
     public ResponseData getList() {
         ResponseData data = new ResponseData();
         try {
-            List<Config> list = configService.findAll();
+            List<Props> list = propsService.findAll();
             data.setStatus(200);
             data.setData(list);
         } catch (Exception e) {
@@ -44,18 +44,18 @@ public class ConfigController extends BaseController {
 
     @RequestMapping(value = "", method = {RequestMethod.POST})
     @ResponseBody
-    public ResponseData getItem(@RequestBody Map<String, String> map) {
+    public ResponseData postItem(@RequestBody Map<String, String> map) {
         ResponseData data = new ResponseData();
         try {
             RequestMap requestMap = new RequestMap(map);
             String name = requestMap.getAsString("name");
             String content = requestMap.getAsString("content", "");
-            Config config = new Config();
-            config.setName(name);
-            config.setContent(content);
-            configService.saveProps(config);
+            Props props = new Props();
+            props.setName(name);
+            props.setContent(content);
+            propsService.saveProps(props);
             data.setStatus(200);
-            data.setData(config);
+            data.setData(props);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             data.setStatus(400);
@@ -70,9 +70,9 @@ public class ConfigController extends BaseController {
     public ResponseData getItem(@PathVariable("id") Integer id) {
         ResponseData data = new ResponseData();
         try {
-            Config config = configService.findPropsById(id);
+            Props props = propsService.findPropsById(id);
             data.setStatus(200);
-            data.setData(config);
+            data.setData(props);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             data.setStatus(400);
@@ -87,13 +87,13 @@ public class ConfigController extends BaseController {
     public ResponseData getItemMap(@PathVariable("id") Integer id) {
         ResponseData data = new ResponseData();
         try {
-            Config config = configService.findPropsById(id);
-            Map<String, Object> map = BeanMapUtil.getPropertyMap(config, "id", "name", "uuid", "content");
+            Props props = propsService.findPropsById(id);
+            Map<String, Object> map = BeanMapUtil.getPropertyMap(props, "id", "name", "uuid", "content");
 
             List<Map<String, Object>> mapList = new ArrayList<>();
             try {
                 Properties properties = new Properties();
-                ByteArrayInputStream inputStream = new ByteArrayInputStream(config.getContent().getBytes());
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(props.getContent().getBytes());
                 properties.load(inputStream);
                 for (Map.Entry<Object, Object> entry : properties.entrySet()) {
                     Object key = entry.getKey();
@@ -129,11 +129,11 @@ public class ConfigController extends BaseController {
             String name = requestMap.getAsString("name");
             String content = requestMap.getAsString("content", "");
 
-            Config config = new Config();
-            config.setId(id);
-            config.setName(name);
-            config.setContent(content);
-            configService.updateProps(config);
+            Props props = new Props();
+            props.setId(id);
+            props.setName(name);
+            props.setContent(content);
+            propsService.updateProps(props);
             data.setStatus(200);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -149,7 +149,7 @@ public class ConfigController extends BaseController {
     public ResponseData updateItem(@PathVariable("id") Integer id) {
         ResponseData data = new ResponseData();
         try {
-            configService.deleteProps(id);
+            propsService.deleteProps(id);
             data.setStatus(200);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

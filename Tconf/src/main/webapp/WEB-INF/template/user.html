@@ -1,0 +1,20 @@
+<div ng-init="init()">
+    <button type="button" class="btn" ng-click="add()">增加用户</button>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>管理</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-cloak ng-repeat="item in list">
+            <td>{{item.userName}}</td>
+            <td>
+                <button type="button" class="btn" ng-click="update(item)">修改密码</button>
+                <button type="button" class="btn" ng-click="delete(item)">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

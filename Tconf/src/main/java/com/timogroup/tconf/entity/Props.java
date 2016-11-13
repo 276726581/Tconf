@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by TimoRD on 2016/10/31.
  */
-public class Config implements Serializable {
+public class Props implements Serializable {
 
     private Integer id;
     private String name;
@@ -44,7 +44,7 @@ public class Config implements Serializable {
         this.content = content;
     }
 
-    public Config() {
+    public Props() {
     }
 
     @Override

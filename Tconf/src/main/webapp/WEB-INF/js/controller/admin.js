@@ -13,7 +13,7 @@ app.config(function ($routeProvider) {
             redirectTo: '/props'
         });
 });
-app.controller("ctrl", function ($scope, $rootScope, $log) {
+app.controller("ctrl", function ($scope, $rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         routeChanged(current.$$route.originalPath);
     });

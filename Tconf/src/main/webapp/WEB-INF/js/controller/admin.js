@@ -63,7 +63,7 @@ app.controller("propsCtrl", function ($scope, $uibModal, propsService) {
     };
     $scope.browse = function (item, size) {
         $uibModal.open({
-            templateUrl: "/template/props_browse.html",
+            templateUrl: "/template/browse_props.html",
             controller: "browsePropsCtrl",
             size: size,
             resolve: {
@@ -185,7 +185,7 @@ app.controller("editUserCtrl", function ($scope, $uibModalInstance, items, userS
 });
 app.controller("browsePropsCtrl", function ($scope, $uibModalInstance, items, propsService) {
     $scope.init = function () {
-        $scope.title = "浏览";
+        $scope.title = "浏览配置";
         propsService.getPropsMap(items.id).then(function (response) {
             $scope.name = response.data.name;
             $scope.props = response.data.props;
@@ -199,7 +199,7 @@ app.controller("browsePropsCtrl", function ($scope, $uibModalInstance, items, pr
 });
 app.controller("addPropsCtrl", function ($scope, $uibModalInstance, items, propsService) {
     $scope.init = function () {
-        $scope.title = "增加";
+        $scope.title = "增加配置";
     };
     $scope.save = function () {
         propsService.addProps($scope.name, $scope.props).then(function (response) {
@@ -215,7 +215,7 @@ app.controller("addPropsCtrl", function ($scope, $uibModalInstance, items, props
 });
 app.controller("editPropsCtrl", function ($scope, $uibModalInstance, items, propsService) {
     $scope.init = function () {
-        $scope.title = "编辑";
+        $scope.title = "编辑配置";
         propsService.getProps(items.id).then(function (response) {
             $scope.id = items.id;
             $scope.name = response.data.name;

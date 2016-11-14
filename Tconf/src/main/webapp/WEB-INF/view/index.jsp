@@ -16,30 +16,37 @@
     <script src="../lib/js/jquery.js"></script>
     <script src="../lib/js/bootstrap.js"></script>
     <script src="../lib/js/angular/angular.js"></script>
+    <style type="text/css">
+        .margin-top {
+            margin-top: 20px;
+        }
+
+        .form-top {
+            margin-top: 200px;
+        }
+    </style>
 </head>
 <body ng-controller="ctrl">
-<div>
-    <form ng-submit="login()">
-        <table>
-            <tr>
-                <td>用户名:</td>
-                <td>
-                    <input type="text" name="username" ng-model="username" placeholder="请输入帐号"/>
-                </td>
-            </tr>
-            <tr>
-                <td>密&nbsp;码:</td>
-                <td>
-                    <input type="password" name="password" ng-model="password" placeholder="请输入密码"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="登录"/>
-                </td>
-            </tr>
-        </table>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <form class="form-top" ng-submit="login()">
+                <div class="row margin-top">
+                    <label class="control-label">用户名:</label>
+                    <input type="text" class="form-control" name="username" ng-model="username"
+                           placeholder="请输入帐号"/>
+                </div>
+                <div class="row margin-top">
+                    <label class="control-label">密码:</label>
+                    <input type="password" class="form-control" name="password" ng-model="password"
+                           placeholder="请输入密码"/>
+                </div>
+                <div class="row margin-top">
+                    <input type="submit" class="form-control btn btn-primary" value="登录"/>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="../js/factory/http.js"></script>

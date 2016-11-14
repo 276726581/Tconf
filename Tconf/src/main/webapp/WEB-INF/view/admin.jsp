@@ -20,8 +20,8 @@
     <script src="../lib/js/angular/angular-route.js"></script>
     <script src="../lib/js/angular/angular-ui-bootstrap-tpls.js"></script>
     <style type="text/css">
-        tr td {
-            padding: 5px;
+        .main {
+            padding-top: 30px;
         }
 
         .list-group {
@@ -31,17 +31,19 @@
 </head>
 <body ng-controller="ctrl" ng-init="init()">
 <div class="container">
-    <div class="row">
-        <div class="col-md-2">
-            <div class="list-group">
-                <a class="list-group-item" ng-cloak ng-repeat="item in groupItems"
-                   ng-href="{{item.link}}" ng-class="{'active':item.selected}">
-                    {{item.name}}
-                </a>
+    <div class="main">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="list-group">
+                    <a class="list-group-item" ng-cloak ng-repeat="item in groupItems"
+                       ng-href="{{item.link}}" ng-class="{'active':item.selected}">
+                        {{item.name}}
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="col-md-10">
-            <div ng-view=""></div>
+            <div class="col-md-10">
+                <div ng-view=""></div>
+            </div>
         </div>
     </div>
 </body>

@@ -7,12 +7,19 @@
         <h3 ng-cloak class="modal-title">{{title}}</h3>
     </div>
     <div class="modal-body">
-        <form id="userForm" ng-submit="save()">
-            <input type="text" ng-model="username">
-            <br>
-            <input type="password" ng-model="password">
-            <br>
-            <input type="submit" class="btn" value="保存">
-        </form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>键</th>
+                <th>值</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-cloak ng-repeat="prop in props">
+                <td>{{prop.key}}</td>
+                <td>{{prop.value}}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>

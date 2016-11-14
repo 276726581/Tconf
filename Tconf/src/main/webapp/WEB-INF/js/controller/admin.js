@@ -172,7 +172,7 @@ app.controller("editUserCtrl", function ($scope, $uibModalInstance, items, userS
         $scope.username = items.userName;
     };
     $scope.update = function () {
-        userService.updatePassWord(items.id, $scope.password).then(function (response) {
+        userService.updatePassWord(items.id, $scope.password).then(function () {
             var item = {id: items.id, userName: items.userName};
             $uibModalInstance.close(item);
         }, function (response) {

@@ -1,5 +1,5 @@
 <div ng-init="init()">
-    <button type="button" class="btn" ng-click="add()">增加配置</button>
+    <button type="button" class="btn btn-primary" ng-click="add()">增加配置</button>
     <table class="table">
         <thead>
         <tr>
@@ -13,9 +13,9 @@
             <td>{{item.name}}</td>
             <td>{{item.uuid}}</td>
             <td>
-                <button type="button" class="btn" ng-click="browse(item)">浏览</button>
-                <button type="button" class="btn" ng-click="edit(item)">编辑</button>
-                <button type="button" class="btn" ng-click="delete(item)">删除</button>
+                <button type="button" class="btn btn-success" ng-click="browse(item)">浏览</button>
+                <button type="button" class="btn btn-primary" ng-click="edit(item)">编辑</button>
+                <button type="button" class="btn btn-danger" ng-click="delete(item)">删除</button>
             </td>
         </tr>
         </tbody>

@@ -1,8 +1,6 @@
-<link href="../lib/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
-    .content {
-        width: 400px;
-        height: 600px;
+    .submit-btn {
+        height: 35px;
     }
 </style>
 <div class="modal-content">
@@ -15,11 +13,13 @@
     </div>
     <div class="modal-body">
         <form id="propsForm" ng-submit="save()">
-            <input type="text" class="form-control" ng-cloak ng-model="name">
+            <label class="control-label">名称:</label>
+            <input type="text" class="form-control" ng-cloak ng-model="name" required>
             <br>
-            <textarea class="form-control content" ng-cloak ng-model="props"/>
+            <label class="control-label">配置:</label>
+            <textarea class="form-control" rows="10" ng-cloak ng-model="props"/>
             <br>
-            <input type="submit" class="btn btn-primary" value="保存">
+            <input type="submit" class="submit-btn btn btn-primary form-control" value="保存">
         </form>
     </div>
 </div>

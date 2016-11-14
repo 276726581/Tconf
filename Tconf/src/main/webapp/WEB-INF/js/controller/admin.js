@@ -15,7 +15,11 @@ app.config(function ($routeProvider) {
 });
 app.controller("ctrl", function ($scope, $rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        routeChanged(current.$$route.originalPath);
+        if (undefined == current.$$route) {
+            routeChanged("/props");
+        } else {
+            routeChanged(current.$$route.originalPath);
+        }
     });
     $scope.init = function () {
         $scope.groupItems = [{
@@ -139,7 +143,6 @@ app.controller("userCtrl", function ($scope, $uibModal, userService) {
             }
         });
         modalInstance.result.then(function (it) {
-            $scope.list.push(it);
         });
     };
     $scope.delete = function (item) {

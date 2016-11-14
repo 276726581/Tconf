@@ -1,3 +1,8 @@
+<style type="text/css">
+    .submit-btn {
+        height: 35px;
+    }
+</style>
 <div class="modal-content">
     <div class="modal-header" ng-init="init()">
         <button type="button" class="close" ng-click="cancel()">
@@ -8,10 +13,12 @@
     </div>
     <div class="modal-body">
         <form id="userForm" ng-submit="update()">
-            <h4>{{username}}</h4>
-            <input type="password" ng-model="password">
+            <label class="control-label">用户名: {{username}}</label>
             <br>
-            <input type="submit" class="btn" value="确定">
+            <label class="control-label">密码:</label>
+            <input type="password" class="form-control" ng-model="password" required>
+            <br>
+            <input type="submit" class="submit-btn btn btn-primary form-control" value="确定">
         </form>
     </div>
 </div>

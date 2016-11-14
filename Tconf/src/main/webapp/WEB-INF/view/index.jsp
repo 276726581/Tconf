@@ -17,6 +17,10 @@
     <script src="../lib/js/bootstrap.js"></script>
     <script src="../lib/js/angular/angular.js"></script>
     <style type="text/css">
+        body {
+            background-color: #f8f8f8;
+        }
+
         .margin-top {
             margin-top: 20px;
         }
@@ -24,27 +28,37 @@
         .form-top {
             margin-top: 200px;
         }
+
+        .login-form {
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px 0px;
+        }
     </style>
 </head>
 <body ng-controller="ctrl">
 <div class="container">
     <div class="row">
         <div class="col-md-offset-4 col-md-4">
-            <form class="form-top" ng-submit="login()">
-                <div class="row margin-top">
-                    <label class="control-label">用户名:</label>
-                    <input type="text" class="form-control" name="username" ng-model="username"
-                           placeholder="请输入帐号"/>
+            <div class="form-top">
+                <div class="login-form">
+                    <form ng-submit="login()">
+                        <div class="row margin-top">
+                            <label class="control-label">用户名:</label>
+                            <input type="text" class="form-control" name="username" ng-model="username" required
+                                   placeholder="请输入帐号"/>
+                        </div>
+                        <div class="row margin-top">
+                            <label class="control-label">密码:</label>
+                            <input type="password" class="form-control" name="password" ng-model="password" required
+                                   placeholder="请输入密码"/>
+                        </div>
+                        <div class="row margin-top">
+                            <input type="submit" class="form-control btn btn-primary" value="登录"/>
+                        </div>
+                    </form>
                 </div>
-                <div class="row margin-top">
-                    <label class="control-label">密码:</label>
-                    <input type="password" class="form-control" name="password" ng-model="password"
-                           placeholder="请输入密码"/>
-                </div>
-                <div class="row margin-top">
-                    <input type="submit" class="form-control btn btn-primary" value="登录"/>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

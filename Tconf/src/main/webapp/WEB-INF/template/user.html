@@ -9,11 +9,13 @@
         </thead>
         <tbody>
         <tr ng-cloak ng-repeat="item in list">
-            <td>{{item.userName}}</td>
-            <td>
-                <button type="button" class="btn btn-primary" ng-click="update(item)">修改密码</button>
-                <button type="button" class="btn btn-danger" ng-click="delete(item)">删除</button>
-            </td>
+           <div class="row">
+               <td class="col-md-3">{{item.userName}}</td>
+               <td class="col-md-4">
+                   <button type="button" class="btn btn-primary" ng-click="update(item)">修改密码</button>
+                   <button type="button" class="btn btn-danger" ng-click="delete(item)">删除</button>
+               </td>
+           </div>
         </tr>
         </tbody>
     </table>

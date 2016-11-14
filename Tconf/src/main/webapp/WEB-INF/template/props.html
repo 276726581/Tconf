@@ -10,13 +10,15 @@
         </thead>
         <tbody>
         <tr ng-cloak ng-repeat="item in list">
-            <td>{{item.name}}</td>
-            <td>{{item.uuid}}</td>
-            <td>
-                <button type="button" class="btn btn-success" ng-click="browse(item)">浏览</button>
-                <button type="button" class="btn btn-primary" ng-click="edit(item)">编辑</button>
-                <button type="button" class="btn btn-danger" ng-click="delete(item)">删除</button>
-            </td>
+            <div class="row">
+                <td class="col-md-2">{{item.name}}</td>
+                <td class="col-md-3">{{item.uuid}}</td>
+                <td class="col-md-4">
+                    <button type="button" class="btn btn-success" ng-click="browse(item)">浏览</button>
+                    <button type="button" class="btn btn-primary" ng-click="edit(item)">编辑</button>
+                    <button type="button" class="btn btn-danger" ng-click="delete(item)">删除</button>
+                </td>
+            </div>
         </tr>
         </tbody>
     </table>

@@ -111,7 +111,7 @@ app.controller("userCtrl", function ($scope, $uibModal, userService) {
     };
     $scope.add = function (size) {
         var modalInstance = $uibModal.open({
-            templateUrl: "/template/edit_user.html",
+            templateUrl: "/template/add_user.html",
             controller: "addUserCtrl",
             size: size,
             resolve: {
@@ -124,13 +124,28 @@ app.controller("userCtrl", function ($scope, $uibModal, userService) {
             $scope.list.push(it);
         });
     };
-    $scope.update = function (item) {
-
+    $scope.update = function (item, size) {
+        var modalInstance = $uibModal.open({
+            templateUrl: "/template/edit_user.html",
+            controller: "editUserCtrl",
+            size: size,
+            resolve: {
+                items: function () {
+                    return {
+                        id: item.id,
+                        userName: item.userName
+                    };
+                }
+            }
+        });
+        modalInstance.result.then(function (it) {
+            $scope.list.push(it);
+        });
     };
     $scope.delete = function (item) {
         userService.deleteUser(item.id).then(function () {
             $scope.list.splice($scope.list.indexOf(item), 1);
-        }, function () {
+        }, function (response) {
             alert(response.msg);
         });
     };
@@ -143,7 +158,24 @@ app.controller("addUserCtrl", function ($scope, $uibModalInstance, items, userSe
         userService.addUser($scope.username, $scope.password).then(function (response) {
             var item = {id: response.data.id, userName: response.data.userName};
             $uibModalInstance.close(item);
-        }, function () {
+        }, function (response) {
+            alert(response.msg);
+        });
+    };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss();
+    };
+});
+app.controller("editUserCtrl", function ($scope, $uibModalInstance, items, userService) {
+    $scope.init = function () {
+        $scope.title = "修改密码";
+        $scope.username = items.userName;
+    };
+    $scope.update = function () {
+        userService.updatePassWord(items.id, $scope.password).then(function (response) {
+            var item = {id: items.id, userName: items.userName};
+            $uibModalInstance.close(item);
+        }, function (response) {
             alert(response.msg);
         });
     };

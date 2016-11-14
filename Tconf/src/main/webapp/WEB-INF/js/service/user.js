@@ -28,10 +28,12 @@
             });
         }
 
-        function updatePassWord(id) {
+        function updatePassWord(id, password) {
             return rest.put(function (options) {
                 options.url = "/user/" + id;
-                options.data = {}
+                options.data = {
+                    password: password
+                }
             });
         }
 

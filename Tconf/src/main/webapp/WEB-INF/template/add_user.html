@@ -6,10 +6,11 @@
     <h3 ng-cloak class="modal-title">{{title}}</h3>
 </div>
 <div class="modal-body">
-    <form id="userForm" ng-submit="update()">
-        <h4>{{username}}</h4>
+    <form id="userForm" ng-submit="save()">
+        <input type="text" ng-model="username">
+        <br>
         <input type="password" ng-model="password">
         <br>
-        <input type="submit" class="btn" value="确定">
+        <input type="submit" class="btn" value="保存">
     </form>
 </div>
